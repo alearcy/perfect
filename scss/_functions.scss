@@ -1,0 +1,33 @@
+@import 'variables';
+
+/// A function to remove the unit from a number.
+///
+/// @param {unit} $unit - A unit with a unit value.
+///
+/// @example
+///   _strip-units(1px)
+///
+@function _strip-units($unit) {
+    @return $unit / ($unit * 0 + 1);
+}
+
+
+/// Returns a "vertical unit". Useful for specifying the height and margins of non-text elements like images and such.
+///
+/// @param {number} $units [1] - Number of units. Accepts floated numbers as well.
+/// @param {number} $px-offset [false] - A positive or negative number of pixels to offset the grid by. Useful for lining the bottom of the gridlines up with your text. Since this doesn't compute a literal pixel you may need to use a floated number (multiples of .25 work well) to keep your rhythm on track.
+///
+/// @example
+///   img {
+///     height: vr-block(5.25);
+///     margin-bottom: vr-block(.25);
+///   }
+@function vr-block($units: 1, $px-offset: false) {
+    @if($px-offset) {
+        @return ((($baseLineHeight * _strip-units($bigFontSize)) / (_strip-units($bigFontSize) / 2)) * ($units / 2) * (1 + ($px-offset / _strip-units($bigFontSize))))+em;
+    }
+
+    @else {
+        @return ((($baseLineHeight * _strip-units($bigFontSize)) / (_strip-units($bigFontSize) / 2)) * ($units / 2))+em;
+    }
+}

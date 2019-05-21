@@ -1,0 +1,17 @@
+{
+  "name": "css",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "browser-sync start --server --files \"css/style.css\" \"index.html\"",
+    "scss": "node-sass scss/style.scss css/style.css",
+    "start": "npm run serve & npm run scss & npm run scss -- -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.5",
+    "node-sass": "^4.12.0"
+  }
+}

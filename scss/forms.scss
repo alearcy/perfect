@@ -1,0 +1,55 @@
+@import 'functions';
+@import 'mixins';
+
+fieldset {
+    padding: vr-block(.5) vr-block() vr-block();
+    border-width: 1px;
+    border-style: solid;
+    max-width: 100%;
+    margin-bottom: vr-block(1, 1);
+
+    @media (min-width: $maxScreen) {
+        margin-bottom: vr-block(1.25, -1);
+    }
+
+    button,
+    input[type="submit"] {
+        margin-bottom: 0;
+    }
+}
+
+legend {
+    color: $dark;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    $local-min-font: $smallFontSize;
+    $local-med-font: $mediumFontSize;
+    $local-max-font: $bigFontSize;
+
+    display: block;
+    max-width: 100%;
+    padding: vr-block(.25);
+
+    font-size: $local-min-font;
+    margin-bottom: vr-block(.5, 7);
+
+    @media (min-width: $minScreen) {
+        font-size: $local-med-font;
+    }
+
+    @media (min-width: $maxScreen) {
+        font-size: $local-max-font;
+        margin-bottom: vr-block(.25, 3.5);
+    }
+}
+
+label {
+    display: block;
+    padding-bottom: vr-block(.125);
+    margin-bottom: vr-block(-.25, -10);
+}

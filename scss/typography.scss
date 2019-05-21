@@ -1,0 +1,439 @@
+@import "variables";
+@import "mixins";
+@import "functions";
+
+// reset
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color: $dark;
+  font-family: $serif;
+  font-size: $smallFontSize;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+
+  @media (min-width: $medScreen) {
+    font-size: $mediumFontSize;
+  }
+
+  @media (min-width: $medScreen) {
+    font-size: $bigFontSize;
+  }
+}
+
+body {
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Copy & Lists */
+p {
+  font-family: $serif;
+  line-height: $baseLineHeight;
+  margin-top: $leading;
+  margin-bottom: 0;
+  hyphens: auto;
+
+  @if $indentParagraph {
+    & + p {
+      text-indent: 2rem;
+      margin-top: 0;
+    }
+
+    .image-wrap {
+      margin: $leading 0;
+    }
+  } @else {
+    & + p {
+      text-indent: inherit;
+      margin-top: $leading;
+    }
+  }
+
+  @if $capitalizeFirstLetter {
+    @supports (not (initial-letter: 5)) and (not (-webkit-initial-letter: 5)) {
+      &:nth-of-type(1)::first-letter {
+        float: left;
+        margin: 0.1em 0.1em 0 0;
+        line-height: 0.7;
+        background: transparent;
+        color: $primary-color;
+        font-size: 4 * $scale * $smallFontSize;
+
+        @media (min-width: $medScreen) {
+          font-size: 4 * $scale * $mediumFontSize;
+        }
+
+        @media (min-width: $maxScreen) {
+          font-size: 4 * $scale * $bigFontSize;
+        }
+      }
+    }
+
+    @supports (initial-letter: 5) or (-webkit-initial-letter: 5) {
+      &:nth-of-type(1)::first-letter {
+        -webkit-initial-letter: 3;
+        initial-letter: 3;
+      }
+    }
+  } @else {
+    &:first-of-type::first-letter {
+      float: none;
+      margin: 0;
+      font-size: inherit;
+      line-height: $baseLineHeight;
+      background: transparent;
+      color: inherit;
+    }
+  }
+}
+
+a {
+  transition: color 100ms linear;
+
+  &:link {
+    color: $primary-color;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $primary-color;
+    text-decoration: underline;
+  }
+
+  &:hover {
+    color: darken($primary-color, 20%);
+  }
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+ul,
+ol {
+  margin-top: $leading;
+  margin-bottom: $leading;
+
+  li {
+    line-height: $baseLineHeight;
+  }
+
+  ul,
+  ol {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+blockquote {
+  line-height: $baseLineHeight;
+  margin: $leading auto;
+  font-style: italic;
+  width: 70%;
+
+  p {
+    text-indent: -0.5rem;
+
+    &:first-of-type::first-letter {
+      float: none;
+      margin: 0;
+      font-size: inherit;
+      line-height: $baseLineHeight;
+      background: transparent;
+      color: inherit;
+    }
+  }
+
+  cite {
+    display: block;
+    font-style: normal;
+  }
+}
+
+p,
+blockquote,
+pre,
+address,
+dl,
+ol,
+ul,
+table {
+  margin-bottom: #{$baseLineHeight}em;
+}
+
+/* Headings */
+
+$headingsMap: (
+  h1: 5,
+  h2: 4,
+  h3: 3,
+  h4: 2,
+  h5: 1,
+  h6: 0
+);
+
+@each $heading, $multipler in $headingsMap {
+  $local-min-font: $smallFontSize * $scale * $multipler;
+  $local-mid-font: $mediumFontSize * $scale * $multipler;
+  $local-max-font: $bigFontSize * $scale * $multipler;
+
+  @if $heading==h6 {
+    #{$heading} {
+      font-size: $smallFontSize;
+      margin-top: $leading * 0.5;
+      margin-bottom: $leading * 0.25;
+
+      @media (min-width: $medScreen) {
+        font-size: $mediumFontSize;
+      }
+
+      @media (min-width: $maxScreen) {
+        font-size: $bigFontSize;
+      }
+    }
+  } @else {
+    #{$heading} {
+      @if $heading==h5 {
+        font-size: $local-min-font;
+
+        @media (min-width: $medScreen) {
+          font-size: $local-mid-font;
+        }
+
+        @media (min-width: $maxScreen) {
+          font-size: $local-max-font;
+        }
+      } @else {
+        font-size: $local-min-font / 1.5;
+
+        @media (min-width: $medScreen) {
+          font-size: $local-mid-font / 1.25;
+        }
+
+        @media (min-width: $maxScreen) {
+          font-size: $local-max-font / 1.25;
+        }
+      }
+
+      margin-top: $leading * 0.5;
+      margin-bottom: $leading * 0.25;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $sans-serif;
+  font-weight: normal;
+  line-height: $baseLineHeight;
+
+  @if $uppercaseAllHeadings {
+    text-transform: uppercase;
+  }
+}
+
+h1 {
+  @if $h1Centered {
+    text-align: center;
+  }
+
+  @if $uppercaseH1 {
+    text-transform: uppercase;
+  }
+}
+
+/* Code blocks */
+
+code {
+  font-family: $monospace;
+  padding: ($baseLineHeight * 0.05) + em ($baseLineHeight * 0.15) + em;
+  line-height: 0;
+}
+
+pre {
+  white-space: inherit;
+  padding: ($baseLineHeight * 0.5) + em;
+  margin-bottom: vr-block(1);
+
+  code {
+    padding: 0;
+  }
+}
+
+big,
+small,
+sub,
+sup {
+  line-height: 0;
+}
+
+small,
+.small {
+  font-size: (1 / $scale) + 0rem;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
+}
+
+address {
+  font-style: normal;
+}
+
+dt {
+  color: $dark;
+  font-weight: bold;
+}
+
+ul {
+  padding-left: 1.1em;
+}
+
+ol {
+  padding-left: 1.4em;
+}
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-bottom: vr-block(1, 5);
+
+  @media (min-width: $maxScreen) {
+    margin-bottom: vr-block(1, 3);
+  }
+}
+
+th {
+  text-align: left;
+  color: $dark;
+
+  padding: vr-block(0.125) vr-block(0.5);
+
+  @media (min-width: $maxScreen) {
+    padding: vr-block(0.25) vr-block(0.5);
+  }
+}
+
+td {
+  padding: ($baseLineHeight * 0.5) + em;
+  padding: vr-block(0.125) vr-block(0.5);
+
+  @media (min-width: $maxScreen) {
+    padding: vr-block(0.25) vr-block(0.5);
+  }
+}
+
+/* HR vertical rhythm with double leading option */
+@if $hr {
+  .custom-hr {
+    border: 0;
+    background: $primary-color;
+    height: 3px;
+    margin: $leading auto 3px;
+    text-align: center;
+    width: 20%;
+
+    @media (min-width: $medScreen) {
+      width: 10%;
+    }
+
+    @if $hrDouble {
+      margin: ($leading * 2) auto 3px auto;
+
+      & + p {
+        margin-top: $leading * 2;
+      }
+    }
+
+    &:after {
+      content: "§";
+      display: inline-block;
+      position: relative;
+      top: -0.6em;
+      padding: 0 0.25em;
+      background: $light;
+      color: $dark;
+    }
+  }
+}
+
+// Figure
+// figure {
+//     margin: $blockquote-margin 0;
+
+//     img {
+//         margin: 0;
+//     }
+// }
+
+// figcaption {
+//     margin-top: 10px;
+//     color: lighten($paragraph-color, 10%);
+//     font-size: $paragraph-margin * 0.8;
+// }

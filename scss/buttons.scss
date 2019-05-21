@@ -1,0 +1,90 @@
+@import 'variables';
+@import 'mixins';
+@import 'functions';
+
+input[type="submit"],
+button {
+    display: block;
+    border: none;
+    background: $primary-color;
+    padding: 1rem;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    // font-weight: regular;
+    transition: all 100ms linear;
+    font-family: $sans-serif;
+    font-size: $smallFontSize;
+    font-weight: normal;
+    padding: vr-block(.25) vr-block();
+    margin-bottom: vr-block(.75, -2);
+
+    @media (min-width: $minScreen) {
+        font-size: $mediumFontSize;
+    }
+
+    @media (min-width: $maxScreen) {
+        font-size: $bigFontSize;
+        margin-bottom: vr-block(.75);
+    }
+
+    &.danger {
+        background: $danger-color;
+    }
+
+    &:active,
+    &:hover {
+        opacity: .8;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:disabled {
+        opacity: .8;
+        cursor: not-allowed;
+        background-color: $grey;
+    }
+
+    &.full {
+        width: 100%;
+    }
+
+    &.lite {
+        border: $primary-color 1px solid;
+        background: transparent;
+        color: $primary-color;
+
+        &.danger {
+            border: $danger-color 1px solid;
+            color: $danger-color;
+
+            &:active,
+            &:hover {
+                background: $danger-color;
+                color: white;
+                opacity: 1;
+            }
+        }
+
+        &:active,
+        &:hover {
+            background: $primary-color;
+            color: white;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            border: $grey 1px solid;
+            color: #bbb;
+            background: transparent;
+        }
+    }
+
+    &.tool {
+        padding: 0;
+        width: 35px;
+        height: 35px;
+    }
+}

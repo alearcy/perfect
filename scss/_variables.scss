@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700|Oswald:300,400');
+
+// COLORS
+$primary-color: #5085A5;
+$grey: #BAB2B5;
+$lightgrey: #E3E3E3;
+$danger-color: #AC3B61;
+$dark: #222;
+$darker: #444;
+$light: #F6F6F8;
+
+// TYPOGRAPHY
+$sans-serif: 'Oswald',
+sans-serif;
+$serif: 'Noto Serif',
+serif;
+$monospace: monospace;
+
+// Font size
+$smallFontSize: 14px;
+$mediumFontSize: 16px;
+$bigFontSize: 18px;
+
+// Line height and vertical rhythm
+$baseLineHeight: 1.5;
+$leading: $baseLineHeight * 1rem;
+
+// Ratios
+$minor-second: 1.067;
+$major-second: 1.125;
+$minor-third: 1.2;
+$major-third: 1.25;
+$perfect-fourth: 1.333;
+$aug-fourth: 1.414;
+$perfect-fifth: 1.5;
+$minor-sixth: 1.6;
+$golden: 1.618;
+$major-sixth: 1.667;
+$minor-seventh: 1.778;
+$major-seventh: 1.875;
+$octave: 2;
+$major-tenth: 2.5;
+$major-eleventh: 2.667;
+$major-twelfth: 3;
+$double-octave: 4;
+
+$scale: $perfect-fourth;
+
+// Extra
+$capitalizeFirstLetter: true;
+$indentParagraph: true;
+$uppercaseH1: false;
+$uppercaseAllHeadings: false;
+$h1Centered: false;
+$hr: true;
+$hrDouble: false;
+
+
+// BREAKPOINTS
+$minScreen: 37.5rem;
+$medScreen: 75rem;
+$maxScreen: 112.5rem;
